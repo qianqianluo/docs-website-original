@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en" xml:id="ACS_DesignAndImplementation">
+<info>
+<title>Design and implementation</title>
+<date>2021-08-30</date>
+</info>
+<section xml:id="_acs">
+<title>ACS</title>
+<simpara><emphasis role="strong">ACS</emphasis> is our general purpose, commercial clustering strategy designed for more or less typical XMPP installations easily scaling to millions and beyond of online users without limit on cluster nodes. The load tests we have run over the code were included a user database with 100mln accounts and an average roster size of up to 150, but that&#8217;s not the limit.</simpara>
+</section>
+<section xml:id="_design">
+<title>Design</title>
+<simpara>The clustering strategy is based on sharing information between cluster nodes about online users. Who is online and where the user is connected. Communication between cluster nodes is processed with the highest priority to ensure minimal delays with online user data population. An efficient synchronization mechanism allows for a minimal traffic between cluster nodes and distributing accurate data about connecting and disconnecting users.</simpara>
+</section>
+<section xml:id="_tigase_acs_sm_installation">
+<title>Tigase ACS SM Installation</title>
+<simpara>Tigase ACS SM component is by default provided with Tigase XMPP Server release (@-dist-max@ flavour of archive) so it&#8217;s enough to enable it in the configuration. It can be also obtained from <literal>tigase-acs</literal> distribution package.</simpara>
+<simpara>After downloading the archive it&#8217;s simply matter of extracting it and copying contents of <literal>jars/</literal> directory of extracted archive to the <literal>jars/</literal> directory in <literal>tigase-server/</literal> installation directory, eg. under *nix systems (assuming the archive was downloaded to main Tigase Server directory):</simpara>
+<programlisting language="bash" linenumbering="unnumbered">tar -xf tigase-acs-${version}.tar.gz
+cp -R tigase-acs-${version}/jars/ tigase-server/jars/</programlisting>
+</section>
+<section xml:id="_tigase_acs_sm_configuration">
+<title>Tigase ACS SM Configuration</title>
+<simpara>In order to user Advanced Clustering Strategy, clustering mode first needs to be turned on:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">'cluster-mode' = true</programlisting>
+<simpara>and then an ACS strategy needs to be enabled:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">'sess-man' {
+    strategy (class: tigase.server.cluster.strategy.OnlineUsersCachingStrategy) {}
+}</programlisting>
+</section>
+</article>
