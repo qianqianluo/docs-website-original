@@ -1,5 +1,5 @@
-name: Push File
-
+name: main.yml
+# push files into docs-website repo
 on: push
 
 jobs:
