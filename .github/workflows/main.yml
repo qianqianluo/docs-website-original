@@ -10,7 +10,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Pushes test file
-      uses: copy_file_to_another_repo_action@main
+      uses: qianqianluo/docs-website-original@master
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
@@ -19,4 +19,5 @@ jobs:
         destination_folder: 'docs'
         user_email: 'qianqianluo@gmail.com'
         user_name: 'Qian Luo'
-        commit_message: 'new added file '
+        commit_message: 'add new rst file'
+    
