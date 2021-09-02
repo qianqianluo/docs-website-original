@@ -1,4 +1,4 @@
-name: main.yml
+name: main
 # push files into docs-website repo
 on: push
 
