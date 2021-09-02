@@ -1,5 +1,5 @@
-name: main
-# push files into docs-website repo
+name: Push File
+
 on: push
 
 jobs:
@@ -18,6 +18,5 @@ jobs:
         destination_repo: 'tigase/docs-website'
         destination_folder: 'docs'
         user_email: 'qianqianluo@gmail.com'
-        user_name: 'Qian Luo'
+        user_name: 'qianqianluo'
         commit_message: 'add new rst file'
-    
